@@ -1,9 +1,14 @@
 import Link from "next/link";
 
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api/posts");
-  const posts = await res.json();
-  return { props: { posts } };
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`);
+    const posts = await res.json();
+    return { props: { posts } };
+  } catch (e) {
+    console.error("フェッチエラー", e);
+    return { props: { posts: [] } };
+  }
 }
 
 export default function Home({ posts }) {

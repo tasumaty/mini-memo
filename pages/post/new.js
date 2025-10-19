@@ -13,7 +13,7 @@ export default function NewPost() {
       body: JSON.stringify({ title, content }),
     });
     const data = await res.json();
-    setMessage(`投稿完了: ${data.title}`);
+    setMessage(`投稿完了: ${data[data.length - 1].title}`);
   };
 
   return (
@@ -22,12 +22,14 @@ export default function NewPost() {
       <form onSubmit={handleSubmit}>
         <input
           placeholder="タイトル"
+          name="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           style={{ display: "block", margin: "0 auto 20px" }}
         />
         <textarea
           placeholder="本文"
+          name="content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           style={{ display: "block", margin: "0 auto 20px" }}

@@ -17,6 +17,6 @@ export default function handler(req, res) {
   } else if (req.method === "POST") {
     const newPost = { id: Date.now(), ...req.body };
     posts.push(newPost);
-    res.status(201).json(newPost);
+    res.status(201).json(posts);
   }
 }

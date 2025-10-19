@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export async function getStaticProps() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ""}/api/posts`);
     const posts = await res.json();
     return { props: { posts } };
   } catch (e) {
@@ -22,7 +22,7 @@ export default function Home({ posts }) {
           </li>
         ))}
       </ul>
-      <Link href={`post/new`}>新規作成</Link>
+      <Link href={`/post/new`}>新規作成</Link>
     </div>
   );
 }
